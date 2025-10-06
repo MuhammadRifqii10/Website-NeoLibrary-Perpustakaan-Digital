@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kelola Buku</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">
+      <h2>Admin Panel</h2>
+    </div>
+
+    <ul class="menu">
+      <li><a href="admin.html" class="menu-item"><span class="icon">🏠</span><span class="text">Dashboard</span></a></li>
+      <li><a href="kelola_buku.html" class="menu-item active"><span class="icon">📚</span><span class="text">Kelola Buku</span></a></li>
+      <li><a href="kelola_user.html" class="menu-item"><span class="icon">👤</span><span class="text">Kelola User</span></a></li>
+      <li><a href="#" class="menu-item"><span class="icon">🏷️</span><span class="text">Kategori Buku</span></a></li>
+      <li><a href="#" class="menu-item"><span class="icon">📊</span><span class="text">Laporan Aktivitas</span></a></li>
+      <li><a href="#" class="menu-item"><span class="icon">🚪</span><span class="text">Logout</span></a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <h1>Kelola Buku</h1>
+    </header>
+
+    <section class="form-section">
+      <form>
+        <label>Judul Buku:</label>
+        <input type="text" placeholder="Masukkan judul buku">
+
+        <label>Penulis:</label>
+        <input type="text" placeholder="Masukkan nama penulis">
+
+        <label>Kategori:</label>
+        <input type="text" placeholder="Masukkan kategori">
+
+        <button type="submit">Tambah Buku</button>
+      </form>
+    </section>
+
+    <section class="table-section">
+      <h2>Daftar Buku</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Judul</th>
+            <th>Penulis</th>
+            <th>Kategori</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Dilan 1990</td>
+            <td>Naswa</td>
+            <td>Novel</td>
+            <td>
+              <button class="aksi-btn">Edit</button>
+              <button class="aksi-btn">Hapus</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kelola User</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">
+      <h2>Admin Panel</h2>
+    </div>
+
+    <ul class="menu">
+      <li><a href="admin.html" class="menu-item"><span class="icon">🏠</span><span class="text">Dashboard</span></a></li>
+      <li><a href="kelola_buku.html" class="menu-item"><span class="icon">📚</span><span class="text">Kelola Buku</span></a></li>
+      <li><a href="kelola_user.html" class="menu-item active"><span class="icon">👤</span><span class="text">Kelola User</span></a></li>
+      <li><a href="#" class="menu-item"><span class="icon">🏷️</span><span class="text">Kategori Buku</span></a></li>
+      <li><a href="#" class="menu-item"><span class="icon">📊</span><span class="text">Laporan Aktivitas</span></a></li>
+      <li><a href="#" class="menu-item"><span class="icon">🚪</span><span class="text">Logout</span></a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <h1>Kelola User</h1>
+    </header>
+
+    <section class="form-section">
+      <form>
+        <label>Nama User:</label>
+        <input type="text" placeholder="Masukkan nama user">
+
+        <label>Email:</label>
+        <input type="email" placeholder="Masukkan email user">
+
+        <label>Role:</label>
+        <input type="text" placeholder="Admin / User">
+
+        <button type="submit">Tambah User</button>
+      </form>
+    </section>
+
+    <section class="table-section">
+      <h2>Daftar User</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>ID User</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Naswa</td>
+            <td>Naswaazizah@example.com</td>
+            <td>001</td>
+            <td>
+              <button class="aksi-btn">Edit</button>
+              <button class="aksi-btn">Hapus</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+</body>
+</html>

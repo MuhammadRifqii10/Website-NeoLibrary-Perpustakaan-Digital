@@ -1,0 +1,350 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 80px;
+    background-color: #6B4F4F;
+    transition: width 0.4s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    height: 100vh;
+    padding-top: 15px;
+}
+
+.sidebar:hover {
+    width: 230px;
+}
+
+.sidebar .logo {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.sidebar .logo h2 {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.sidebar .logo img {
+    width: 55px;
+    height: 55px;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+/* Menu */
+.menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.menu li {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.menu label {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s, padding-left 0.3s;
+    border-radius: 8px;
+}
+
+.menu label:hover {
+    background-color: #ffffff; /* coklat tua hover */
+    padding-left: 25px;
+}
+
+/* Icon dan Text */
+.menu .icon {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+.menu .text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+}
+
+/* Saat sidebar dibuka (hover) */
+.sidebar:hover .menu .text {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Radio aktif */
+input[type="radio"] {
+    display: none;
+}
+
+input#dashboard:checked ~ .menu li:nth-child(1) label,
+input#buku:checked ~ .menu li:nth-child(2) label,
+input#user:checked ~ .menu li:nth-child(3) label,
+input#kategori:checked ~ .menu li:nth-child(4) label,
+input#laporan:checked ~ .menu li:nth-child(5) label,
+input#logout:checked ~ .menu li:nth-child(6) label {
+    background-color: #543c3c;
+    box-shadow: inset 4px 0 0 #fff;
+}
+
+.main-content {
+    margin-left: 80px;
+    padding: 30px;
+    transition: margin-left 0.4s;
+    width: 100%;
+}
+
+.sidebar:hover ~ .main-content {
+    margin-left: 230px;
+}
+
+
+:root {
+    --primary: #6B4F4F;
+    --secondary: #FFEBC1;
+    --text-dark: #2c2c2c;
+    --card-bg: #D9B08C;
+    --hover-dark: #543c3c;
+}
+
+/* Override body font */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&family=Open+Sans&family=Inria+Serif&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--secondary); /* krem */
+    color: var(--text-dark);
+}
+
+/* Header */
+header h1 {
+    font-family: 'Josefin Sans', sans-serif;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+header p {
+    font-family: 'Inria Serif', serif;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+}
+
+/* Stats cards */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 8px;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(107,79,79,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(107,79,79,0.14);
+}
+.stat-card h4 { font-size: 16px; color: black; margin-bottom: 8px; }
+.stat-card p  { font-size: 18px; font-weight: 700; color: var(--primary); }
+
+/* Activity table */
+.activity {
+    margin-top: 26px;
+}
+.activity h2 { font-family: 'Josefin Sans', sans-serif; color: var(--primary); margin-bottom: 12px; }
+
+.activity table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.activity th, .activity td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-size: 14px;
+}
+.activity th {
+    background: var(--primary);
+    color: #fff;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* row stripes and hover */
+.activity tbody tr:nth-child(even) { background: #f7e9d2; }
+.activity tbody tr:hover { background: #f0d9a8; }
+
+/* content shift when a radio is checked (active menu) */
+input#dashboard:checked ~ .menu li:nth-child(1) label,
+input#buku:checked ~ .menu li:nth-child(2) label,
+input#user:checked ~ .menu li:nth-child(3) label,
+input#kategori:checked ~ .menu li:nth-child(4) label,
+input#laporan:checked ~ .menu li:nth-child(5) label,
+input#logout:checked ~ .menu li:nth-child(6) label {
+    /* highlight uses a subtle darker accent related to primary */
+    background-color: var(--hover-dark);
+    box-shadow: inset 4px 0 0 rgba(255,235,193,0.12);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .stats { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 600px) {
+  .sidebar { width: 64px; }
+  .sidebar:hover { width: 180px; }
+  .main-content { margin-left: 64px; padding: 18px; }
+}
+
+.menu a.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s, padding-left 0.3s;
+}
+
+.menu a.menu-item:hover {
+    background-color: #8b5e3c; /* warna hover coklat muda */
+    padding-left: 25px;
+}
+
+/* Saat halaman aktif (gunakan class active di menu yang sedang dibuka) */
+.menu a.menu-item.active {
+    background-color: #a97142;
+    box-shadow: inset 4px 0 0 #fff;
+}
+
+.form-section {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  margin-bottom: 30px;
+}
+
+.form-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-section label {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.form-section input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form-section button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.form-section button:hover {
+  background-color: var(--hover-dark);
+}
+
+/* Tabel */
+.table-section {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.table-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.table-section th, .table-section td {
+  border-bottom: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.table-section th {
+  background-color: var(--primary);
+  color: white;
+}
+
+.table-section tbody tr:nth-child(even) {
+  background-color: #f8f4ee;
+}
+
+.table-section tbody tr:hover {
+  background-color: #f1e3d3;
+}
+
+/* Tombol aksi */
+.aksi-btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  margin-right: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.aksi-btn:hover {
+  background-color: var(--hover-dark);
+}
+
+/* 🌈 Warna teks menu */
+.menu label .text {
+    color: #FFEBC1; /* krem lembut */
+}
+
+.menu label:hover .text {
+    color: #6B4F4F; /* coklat tua saat hover */
+}
+
+input#dashboard:checked ~ .menu li:nth-child(1) label .text,
+input#buku:checked ~ .menu li:nth-child(2) label .text,
+input#user:checked ~ .menu li:nth-child(3) label .text,
+input#kategori:checked ~ .menu li:nth-child(4) label .text,
+input#laporan:checked ~ .menu li:nth-child(5) label .text,
+input#logout:checked ~ .menu li:nth-child(6) label .text {
+    color: #FFFFFF; /* putih saat aktif */
+}

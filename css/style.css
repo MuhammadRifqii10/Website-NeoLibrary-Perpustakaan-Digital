@@ -38,7 +38,7 @@ body {
 }
 
 .navbar .logo img {
-    height: 120px;
+    height: 200px;
     width: auto;
     filter: brightness(0) invert(1);
     position: absolute;
@@ -418,9 +418,449 @@ footer {
     font-size: 14px;
   }
 
+
+
+
   /* Footer */
   footer {
     font-size: 12px;
   }
 }
 
+/* ===== SEARCH BAR ===== */
+.search-bar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 300px;
+}
+
+.search-wrapper input {
+  width: 100%;
+  padding: 10px 45px 10px 15px; /* ruang untuk ikon di kanan */
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-wrapper input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 8px rgba(107, 79, 79, 0.3);
+}
+
+.search-wrapper .search-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--primary);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.search-wrapper .search-btn:hover {
+  background: #543c3c;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* ===== NOTIFIKASI (TOAST POPUP) ===== */
+#toast-container {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.toast {
+  background-color: #333;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(-20px);
+  font-weight: 500;
+  font-size: 15px;
+  animation: fadeInOut 3.5s ease forwards;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Animasi popup muncul dan hilang */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  10%, 90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Warna notifikasi */
+.toast-success { background-color: #4CAF50; }
+.toast-info { background-color: #2196F3; }
+.toast-error { background-color: #f44336; }
+
+/* ===== THEME TOGGLE (FIXED SLIDER) ===== */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  color: white;
+}
+
+.theme-btn {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background-color: #ddd;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+  transition: background-color 0.5s ease;
+}
+
+/* Slider bulat di dalam tombol */
+.theme-btn .slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  height: 24px;
+  width: 24px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ikon dalam slider */
+.theme-btn .icon {
+  position: absolute;
+  font-size: 15px;
+  transition: all 0.4s ease;
+}
+
+/* Matahari & Bulan */
+.theme-btn .sun {
+  opacity: 1;
+}
+.theme-btn .moon {
+  opacity: 0;
+}
+
+/* Saat mode gelap aktif */
+.theme-btn.active {
+  background-color: var(--primary);
+}
+
+.theme-btn.active .slider {
+  transform: translateX(30px);
+}
+
+.theme-btn.active .sun {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.theme-btn.active .moon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Warna label berubah di mode gelap */
+body.dark-theme .theme-toggle span {
+  color: #f5f5f5;
+}
+
+/* ===== DARK MODE FINAL FIX ===== */
+body.dark-theme {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+/* Navbar */
+body.dark-theme .navbar {
+  background-color: #1f1f1f;
+  color: #fff;
+}
+
+body.dark-theme .navbar ul li a {
+  color: #f5f5f5;
+}
+
+body.dark-theme .navbar ul li a:hover,
+body.dark-theme .navbar ul li a.active {
+  background-color: #333;
+  color: #ffe4b5;
+}
+
+/* Logo */
+body.dark-theme .logo img {
+  filter: brightness(0) invert(1);
+}
+
+/* Hero section */
+body.dark-theme .hero {
+  background-color: #181818;
+}
+
+body.dark-theme .hero-text h1,
+body.dark-theme .hero-text p {
+  color: #f5f5f5;
+}
+
+/* Tombol utama */
+body.dark-theme .btn {
+  background-color: #6B4F4F;
+  color: #fff;
+}
+
+body.dark-theme .btn:hover {
+  background-color: #543c3c;
+}
+
+/* Search bar */
+body.dark-theme .search-wrapper input {
+  background-color: #222;
+  color: #fff;
+  border-color: #555;
+}
+
+body.dark-theme .search-wrapper .search-btn {
+  background-color: #6B4F4F;
+  color: #fff;
+}
+
+body.dark-theme .search-wrapper .search-btn:hover {
+  background-color: #543c3c;
+}
+
+/* Toast notification */
+body.dark-theme .toast {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Footer */
+body.dark-theme footer {
+  background-color: #1a1a1a;
+  color: #ddd;
+}
+
+/* Kartu Buku (untuk Dashboard) */
+body.dark-theme .book-card {
+  background-color: #2a2a2a;
+  color: #f5f5f5;
+  box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+}
+
+/* Transisi halus untuk semua elemen penting */
+body, .navbar, footer, .hero, .hero-text, .search-wrapper input, .theme-btn, .book-card {
+  transition: background-color 0.5s ease, color 0.5s ease, filter 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* ===== EFFECT GLOW UNTUK TOMBOL THEME ===== */
+.theme-btn {
+  box-shadow: 0 0 0 rgba(107, 79, 79, 0);
+  transition: background-color 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease;
+}
+
+/* Saat tombol dihover */
+.theme-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Saat mode gelap aktif — efek cahaya lembut */
+.theme-btn.active {
+  background-color: var(--primary);
+  box-shadow: 0 0 15px rgba(107, 79, 79, 0.8), 0 0 30px rgba(107, 79, 79, 0.5);
+}
+
+/* Efek glow lembut di slider saat aktif */
+.theme-btn.active .slider {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Transisi tambahan agar pergerakan lebih halus */
+.theme-btn .slider,
+.theme-btn .icon {
+  transition: all 0.4s ease;
+}
+
+/* ===== EFFECT GLOW + GOLD PULSE UNTUK TOMBOL THEME ===== */
+.theme-btn {
+  box-shadow: 0 0 0 rgba(107, 79, 79, 0);
+  transition: background-color 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease;
+}
+
+/* Saat dihover */
+.theme-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Saat mode gelap aktif */
+.theme-btn.active {
+  background-color: var(--primary);
+  box-shadow: 0 0 20px rgba(107, 79, 79, 0.8), 0 0 40px rgba(255, 215, 0, 0.4);
+  animation: goldPulse 2.8s infinite ease-in-out;
+}
+
+/* Cahaya halus pada slider */
+.theme-btn.active .slider {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+/* Animasi berdenyut dengan gradasi coklat ke emas */
+@keyframes goldPulse {
+  0% {
+    box-shadow: 0 0 15px rgba(107, 79, 79, 0.8),
+                0 0 35px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.8),
+                0 0 55px rgba(255, 200, 100, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(107, 79, 79, 0.8),
+                0 0 35px rgba(255, 215, 0, 0.3);
+  }
+}
+
+/* Transisi halus */
+.theme-btn .slider,
+.theme-btn .icon {
+  transition: all 0.4s ease;
+} 
+
+/* ===== HERO ACTIONS: tombol Sembunyikan di atas tombol utama ===== */
+.hero-actions {
+  display: flex;
+  flex-direction: column;        /* susun vertical: toggle di atas, tombol di bawah */
+  align-items: flex-start;       /* rata kiri supaya rapi terhadap judul */
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* tombol teks kecil, samar & minimalis */
+.text-toggle-btn {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.55);    /* samar di tema terang */
+  font-size: 13px;
+  font-style: normal;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+  transition: color 0.25s ease, transform 0.15s ease;
+  align-self: flex-start;
+}
+
+.text-toggle-btn:hover {
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+/* Tombol kecil untuk sembunyikan deskripsi */
+.text-toggle-btn {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.55); /* samar, elegan */
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.text-toggle-btn:hover {
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* Mode gelap */
+body.dark-theme .text-toggle-btn {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body.dark-theme .text-toggle-btn:hover {
+  color: #fff;
+}
+
+/* Efek sembunyi/tampil deskripsi */
+#hero-desc {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#hero-desc.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+/* === Posisi tombol 'Sembunyikan' tepat di atas tombol Mulai Membaca === */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Tombol kecil 'Sembunyikan' */
+#toggle-desc-btn {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 13px;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: -15px; /* tarik sedikit ke atas agar mendekat ke deskripsi */
+  margin-bottom: 8px; /* beri jarak kecil dengan tombol Mulai Membaca */
+  transition: color 0.3s ease, transform 0.2s ease;
+  padding: 2px 6px;
+}
+
+#toggle-desc-btn:hover {
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Mode gelap */
+body.dark-theme #toggle-desc-btn {
+  color: rgba(255, 255, 255, 0.7);
+}
+body.dark-theme #toggle-desc-btn:hover {
+  color: #fff;
+}
+
+/* Transisi untuk sembunyikan deskripsi */
+#hero-desc {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+#hero-desc.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}

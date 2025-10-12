@@ -11,28 +11,57 @@
     <div class="logo">
       <img src="assets/Logo.png" alt="Logo Perpustakaan" class="logo-img"/>
     </div>
-    <ul>
-      <li><a href="index.html" class="active">Beranda</a></li>
-      <li><a href="login.html">Login</a></li>
-      <li><a href="register.html">Register</a></li>
-    </ul>
+
+    <!-- Search Bar (DOM 2) -->
+    <div class="search-bar">
+      <div class="search-wrapper">
+        <input type="text" id="search-input" placeholder="Cari buku...">
+        <button id="search-btn" class="search-btn">🔍</button>
+      </div>
+    </div>
+
+    <!-- Tombol Mode (DOM 1)-->
+    <div class="theme-toggle">
+      <span id="theme-label">Mode Terang ☀️</span>
+      <button id="theme-btn" class="theme-btn">
+        <div class="slider">
+          <span class="icon sun">☀️</span>
+          <span class="icon moon">🌙</span>
+        </div>
+      </button>
+    </div>
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Baca, Belajar, dan Temukan Pengetahuan Tanpa Batas</h1>
-      <p>Perpustakaan Digital hadir sebagai ruang membaca, menemukan inspirasi, dan berbagi pengetahuan yang tak terbatas.</p>
-      <a href="login.html" class="btn">Mulai Membaca</a>
-    </div>
-    <div class="hero-image">
-      <img src="assets/Icon.svg" alt="Ikon Perpustakaan" />
-    </div>
-  </section>
+<section class="hero">
+  <div class="hero-text">
+    <h1 id="hero-title">Baca, Belajar, dan Temukan Pengetahuan Tanpa Batas</h1>
+    <p id="hero-desc">
+      Perpustakaan Digital hadir sebagai ruang membaca, menemukan inspirasi, dan berbagi pengetahuan yang tak terbatas.
+    </p>
+
+    <!-- Tombol kecil untuk sembunyikan deskripsi (DOM 3) -->
+    <button id="toggle-desc-btn" class="text-toggle-btn" title="Sembunyikan deskripsi">
+      Sembunyikan
+    </button>
+
+    <a href="login.html" class="btn" style="margin-top:10px;">Mulai Membaca</a>
+  </div>
+
+  <div class="hero-image">
+    <img src="assets/Icon.svg" alt="Ikon Perpustakaan" />
+  </div>
+</section>
+
+
+  <!-- Container untuk Toast -->
+  <div id="toast-container"></div>
 
   <!-- FOOTER -->
   <footer>
     <p>© 2025 Perpustakaan Digital</p>
   </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>

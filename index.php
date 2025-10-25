@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <!-- Tombol Mode (DOM 1)-->
+    <!-- Tombol Mode (DOM 1) -->
     <div class="theme-toggle">
       <span id="theme-label">Mode Terang ☀️</span>
       <button id="theme-btn" class="theme-btn">
@@ -33,26 +33,25 @@
   </nav>
 
   <!-- HERO -->
-<section class="hero">
-  <div class="hero-text">
-    <h1 id="hero-title">Baca, Belajar, dan Temukan Pengetahuan Tanpa Batas</h1>
-    <p id="hero-desc">
-      Perpustakaan Digital hadir sebagai ruang membaca, menemukan inspirasi, dan berbagi pengetahuan yang tak terbatas.
-    </p>
+  <section class="hero">
+    <div class="hero-text">
+      <h1 id="hero-title">Baca, Belajar, dan Temukan Pengetahuan Tanpa Batas</h1>
+      <p id="hero-desc">
+        Perpustakaan Digital hadir sebagai ruang membaca, menemukan inspirasi, dan berbagi pengetahuan yang tak terbatas.
+      </p>
 
-    <!-- Tombol kecil untuk sembunyikan deskripsi (DOM 3) -->
-    <button id="toggle-desc-btn" class="text-toggle-btn" title="Sembunyikan deskripsi">
-      Sembunyikan
-    </button>
+      <!-- Tombol kecil untuk sembunyikan deskripsi (DOM 3) -->
+      <button id="toggle-desc-btn" class="text-toggle-btn" title="Sembunyikan deskripsi">
+        Sembunyikan
+      </button>
 
-    <a href="login.html" class="btn" style="margin-top:10px;">Mulai Membaca</a>
-  </div>
+      <a href="login.php" class="btn" style="margin-top:10px;">Mulai Membaca</a>
+    </div>
 
-  <div class="hero-image">
-    <img src="assets/Icon.svg" alt="Ikon Perpustakaan" />
-  </div>
-</section>
-
+    <div class="hero-image">
+      <img src="assets/Icon.svg" alt="Ikon Perpustakaan" />
+    </div>
+  </section>
 
   <!-- Container untuk Toast -->
   <div id="toast-container"></div>

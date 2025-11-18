@@ -17,7 +17,10 @@
       <li><a href="#">Koleksi</a></li>
       <li><a href="#">Favorit</a></li>
       <li><a href="#">Riwayat</a></li>
+<<<<<<< HEAD
       <li><a href="logout.php" class="logout-btn">Keluar</a></li>
+=======
+>>>>>>> 1e78c38c13b2315e2dd966844edb4c7463f0dff4
     </ul>
   </nav>
 

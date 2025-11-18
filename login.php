@@ -22,6 +22,7 @@
   <div class="form-container center-form">
     <div class="form-box">
       <h2>Login</h2>
+<<<<<<< HEAD
 
      <form action="proses_login.php" method="post">
 
@@ -37,6 +38,21 @@
       <p style="margin-top: 10px;">
         Belum punya akun? <a href="register.php">Daftar di sini</a>
       </p>
+=======
+      <form action="dashboard.php" method="post">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Masukkan Email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Masukkan Password" required>
+
+        <button type="submit" class="btn">Login</button>
+
+        <div class="extra-links">
+          <p><a href="#">Lupa Password?</a></p>
+        </div>
+      </form>
+>>>>>>> 1e78c38c13b2315e2dd966844edb4c7463f0dff4
     </div>
   </div>
 

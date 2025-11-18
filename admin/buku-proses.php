@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 session_start();
 include '../koneksi.php';
 
@@ -79,3 +80,18 @@ $query = "INSERT INTO tb_buku
     exit;
 }
 ?>
+=======
+if (isset($_POST['simpan'])) {
+    $judul = $_POST['judul'];
+    $penulis = $_POST['penulis'];
+    $kategori = $_POST['kategori'];
+    $cover = $_FILES['cover']['name'];
+
+    echo 
+    'Judul Buku : ' . $judul .
+    '<br> Penulis : ' . $penulis .
+    '<br> Kategori : ' . $kategori .
+    '<br> Nama File : ' . $cover;
+}
+?>
+>>>>>>> 1e78c38c13b2315e2dd966844edb4c7463f0dff4

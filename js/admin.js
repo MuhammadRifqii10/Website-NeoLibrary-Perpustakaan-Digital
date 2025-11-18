@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
   const toastContainer = document.getElementById("toast-container");
 
   // === TOAST ===
@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (nama) {
       localStorage.setItem("namaAdmin", nama);
       tampilkanNamaAdmin();
-      showToast(`Selamat datang, ${nama}! 🎉`, "success");
+      showToast(`Selamat datang, ${nama}! `, "success");
     } else {
-      showToast("Nama admin tidak dimasukkan ❌", "error");
+      showToast("Nama admin tidak dimasukkan", "error");
     }
   }
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     tampilkanNamaAdmin();
   }
 
-  // === JAM REALTIME (ID sesuai admin.html: "jam-sekarang") ===
+  // === JAM REALTIME ===
   function updateJam() {
     const el = document.getElementById("jam-sekarang");
     if (!el) return;
@@ -73,93 +73,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // === DATA BUKU: inisialisasi hanya bila localStorage belum ada sama sekali ===
-  async function inisialisasiDataBuku() {
-    try {
-      // Periksa apakah key sudah pernah dibuat (null = belum pernah)
-      const raw = localStorage.getItem("dataBuku");
-      if (raw === null) {
-        // pertama kali: ambil dari JSON dan simpan ke localStorage
-        const response = await fetch("../data/data-buku.json");
-        if (!response.ok) throw new Error("Gagal fetch data-buku.json");
-        const data = await response.json();
-        localStorage.setItem("dataBuku", JSON.stringify(data));
-        showToast("Data buku berhasil dimuat dari file JSON 📖", "success");
-        return data;
-      } else {
-        // sudah pernah ada (meskipun bisa berupa '[]'), gunakan apa yang ada
-        try {
-          return JSON.parse(raw);
-        } catch (e) {
-          // jika parsing gagal, reset dengan array kosong
-          localStorage.setItem("dataBuku", JSON.stringify([]));
-          return [];
-        }
-      }
-    } catch (err) {
-      console.error(err);
-      showToast("Gagal memuat data buku ⚠️", "error");
-      // fallback agar fungsi lain masih dapat berjalan
-      return JSON.parse(localStorage.getItem("dataBuku") || "[]");
-    }
-  }
-
-  // === tampilkanDataBuku selalu menerima array (fallback []) ===
-  function tampilkanDataBuku(dataArray) {
+  // === TABEL BUKU (sementara kosong / placeholder) ===
+  function tampilkanDataKosong() {
     const tbody = document.querySelector("#tabel-buku tbody");
     if (!tbody) return;
-    const data = Array.isArray(dataArray) ? dataArray : [];
-    tbody.innerHTML = "";
-
-    if (data.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center">Belum ada data buku.</td></tr>`;
-      return;
-    }
-
-    data.forEach((buku, i) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${i + 1}</td>
-        <td>${buku.judul || "-"}</td>
-        <td>${buku.penulis || "-"}</td>
-        <td>${buku.kategori || "-"}</td>
-        <td><button class="aksi-btn" data-index="${i}">Hapus</button></td>
-      `;
-      tbody.appendChild(tr);
-    });
-
-    // pasang event listener HAPUS setiap render
-    tbody.querySelectorAll(".aksi-btn").forEach(btn => {
-      btn.addEventListener("click", (e) => {
-        const idx = parseInt(e.currentTarget.dataset.index, 10);
-        if (Number.isNaN(idx)) return;
-        hapusBuku(idx);
-      });
-    });
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center">Data buku akan dimuat dari database.</td></tr>`;
   }
 
-  // === HAPUS BUKU (update localStorage dan re-render) ===
-  function hapusBuku(index) {
-    const raw = localStorage.getItem("dataBuku");
-    let data = [];
-    try {
-      data = JSON.parse(raw) || [];
-    } catch (e) {
-      data = [];
-    }
-    if (!data[index]) {
-      showToast("Data tidak ditemukan ❌", "error");
-      return;
-    }
-    const judul = data[index].judul || "Buku";
-    if (!confirm(`Yakin ingin menghapus "${judul}"?`)) return;
-    data.splice(index, 1);
-    localStorage.setItem("dataBuku", JSON.stringify(data));
-    showToast(`"${judul}" dihapus ❌`, "error");
-    tampilkanDataBuku(data);
-  }
-
-  // === INISIALISASI UTAMA ===
-  const buku = await inisialisasiDataBuku(); // array atau []
-  tampilkanDataBuku(buku);
+  // Inisialisasi tampilan awal
+  tampilkanDataKosong();
 });

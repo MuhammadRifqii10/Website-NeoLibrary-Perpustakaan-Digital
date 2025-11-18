@@ -12,9 +12,9 @@
       <img src="assets/Logo.png" alt="Logo Perpustakaan" class="logo-img"/>
     </div>
     <ul>
-      <li><a href="index.html">Beranda</a></li>
-      <li><a href="login.html">Login</a></li>
-      <li><a href="register.html" class="active">Register</a></li>
+      <li><a href="index.php">Beranda</a></li>
+      <li><a href="login.php">Login</a></li>
+      <li><a href="register.php" class="active">Register</a></li>
     </ul>
   </nav>
 
@@ -22,17 +22,20 @@
   <div class="form-container center-form">
     <div class="form-box">
       <h2>Register</h2>
-      <form action="login.html" method="post">
+
+      <!-- FORM REGISTER -->
+      <form action="proses_register.php" method="post">
+
+        <label for="nama_user">Nama Lengkap</label>
+        <input type="text" id="nama_user" name="nama_user" placeholder="Nama Lengkap" required>
+
         <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Masukkan Email" required>
+        <input type="email" id="email" name="email" placeholder="Masukkan Email" required>
 
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Masukkan Password" required>
+        <input type="password" id="password" name="password" placeholder="Masukkan Password" required>
 
-        <label for="nama">Nama Lengkap</label>
-        <input type="text" id="nama" placeholder="Nama Lengkap" required>
-
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn">Daftar</button>
       </form>
     </div>
   </div>

@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($cek_email) > 0) {
         echo "<script>
                 alert('Email sudah terdaftar, silakan gunakan email lain.');
-                window.location='register.php';
+             z   window.location='register.php';
               </script>";
         exit;
     }

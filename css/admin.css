@@ -366,3 +366,52 @@ header p {
     .sidebar:hover { width: 180px; }
     .main-content { margin-left: 64px; padding: 18px; }
 }
+/* ===== TABEL DAFTAR BUKU ===== */
+.table-section {
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.table-section h2 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    color: #333;
+}
+
+.table-section table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-section th, .table-section td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-section th {
+    background-color: #6B4F4F; /* Bisa diganti sesuai tema */
+    color: #fff;
+    font-weight: 600;
+}
+
+.table-section tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-section img {
+    height: 50px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.menu-item .icon {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+    font-size: 18px;
+}

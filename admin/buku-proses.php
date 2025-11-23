@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 session_start();
 include '../koneksi.php';
 
@@ -9,24 +8,50 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
-// Mengambil id_admin dari session (Asumsi id admin disimpan di $_SESSION['user_id'] saat login)
-// SESUAIKAN JIKA NAMA SESSION ID ADMIN ANDA BERBEDA
 $id_admin = isset($_SESSION['admin_id_sesi']) ? $_SESSION['admin_id_sesi'] : 4;
+$aksi = $_POST['aksi'] ?? $_GET['aksi'] ?? '';
 
-// Menentukan aksi (tambah, edit, atau hapus)
-$aksi = isset($_POST['aksi']) ? $_POST['aksi'] : (isset($_GET['aksi']) ? $_GET['aksi'] : '');
+// Folder upload
+$folder_buku = "../uploads/buku/";
+$folder_cover = "../uploads/cover/";
+
+// Fungsi upload file
+function upload_file($file, $folder, $allowed_ext) {
+    $nama_file = $file['name'];
+    $tmp = $file['tmp_name'];
+    $ext = strtolower(pathinfo($nama_file, PATHINFO_EXTENSION));
+
+    if (!in_array($ext, $allowed_ext)) {
+        return false;
+    }
+
+    $nama_baru = time() . "_" . uniqid() . "." . $ext;
+    move_uploaded_file($tmp, $folder . $nama_baru);
+
+    return $nama_baru;
+}
 
 if ($aksi == 'tambah') {
-    // --- CREATE LOGIC ---
+
     $judul = mysqli_real_escape_string($conn, $_POST['judul_buku']);
     $penulis = mysqli_real_escape_string($conn, $_POST['penulis']);
     $penerbit = mysqli_real_escape_string($conn, $_POST['penerbit']);
     $tahun_terbit = mysqli_real_escape_string($conn, $_POST['tahun_terbit']);
     $id_kategori = mysqli_real_escape_string($conn, $_POST['id_kategori']);
     $deskripsi = mysqli_real_escape_string($conn, $_POST['deskripsi']);
-$query = "INSERT INTO tb_buku 
-          (judul_buku, penulis, penerbit, tahun_terbit, id_kategori, id_admin, deskripsi) 
-          VALUES ('$judul', '$penulis', '$penerbit', '$tahun_terbit', '$id_kategori', '$id_admin', '$deskripsi')";
+
+    // Upload file
+    $file_buku = upload_file($_FILES['file_buku'], $folder_buku, ['pdf']);
+    $file_cover = upload_file($_FILES['file_cover'], $folder_cover, ['jpg', 'jpeg', 'png']);
+
+    if ($file_buku === false || $file_cover === false) {
+        header("Location: kelola_buku.php?pesan=format_file_tidak_sesuai");
+        exit();
+    }
+
+    $query = "INSERT INTO tb_buku 
+              (judul_buku, penulis, penerbit, tahun_terbit, id_kategori, id_admin, deskripsi, file_buku, file_cover) 
+              VALUES ('$judul', '$penulis', '$penerbit', '$tahun_terbit', '$id_kategori', '$id_admin', '$deskripsi', '$file_buku', '$file_cover')";
 
     if (mysqli_query($conn, $query)) {
         header("Location: kelola_buku.php?pesan=sukses_tambah");
@@ -35,23 +60,44 @@ $query = "INSERT INTO tb_buku
     }
     exit;
 
+
 } elseif ($aksi == 'edit') {
-    // --- UPDATE LOGIC ---
+
     $id_buku = mysqli_real_escape_string($conn, $_POST['id_buku']);
     $judul = mysqli_real_escape_string($conn, $_POST['judul_buku']);
     $penulis = mysqli_real_escape_string($conn, $_POST['penulis']);
     $penerbit = mysqli_real_escape_string($conn, $_POST['penerbit']);
     $tahun_terbit = mysqli_real_escape_string($conn, $_POST['tahun_terbit']);
-    $id_kategori = mysqli_real_escape_string($conn, $_POST['id_kategori']); 
+    $id_kategori = mysqli_real_escape_string($conn, $_POST['id_kategori']);
     $deskripsi = mysqli_real_escape_string($conn, $_POST['deskripsi']);
 
+    // Ambil file lama
+    $get_old = mysqli_query($conn, "SELECT file_buku, file_cover FROM tb_buku WHERE id_buku='$id_buku'");
+    $old = mysqli_fetch_assoc($get_old);
+
+    $file_buku = $old['file_buku'];
+    $file_cover = $old['file_cover'];
+
+    // Jika ada file baru
+    if (!empty($_FILES['file_buku']['name'])) {
+        unlink($folder_buku . $old['file_buku']);
+        $file_buku = upload_file($_FILES['file_buku'], $folder_buku, ['pdf']);
+    }
+
+    if (!empty($_FILES['file_cover']['name'])) {
+        unlink($folder_cover . $old['file_cover']);
+        $file_cover = upload_file($_FILES['file_cover'], $folder_cover, ['jpg', 'jpeg', 'png']);
+    }
+
     $query = "UPDATE tb_buku SET 
-              judul_buku='$judul', 
-              penulis='$penulis', 
-              penerbit='$penerbit', 
-              tahun_terbit='$tahun_terbit', 
-              id_kategori='$id_kategori', 
-              deskripsi='$deskripsi' 
+              judul_buku='$judul',
+              penulis='$penulis',
+              penerbit='$penerbit',
+              tahun_terbit='$tahun_terbit',
+              id_kategori='$id_kategori',
+              deskripsi='$deskripsi',
+              file_buku='$file_buku',
+              file_cover='$file_cover'
               WHERE id_buku='$id_buku'";
 
     if (mysqli_query($conn, $query)) {
@@ -59,39 +105,30 @@ $query = "INSERT INTO tb_buku
     } else {
         header("Location: kelola_buku.php?pesan=gagal_edit&error=" . urlencode(mysqli_error($conn)));
     }
+
     exit;
 
+
 } elseif ($aksi == 'hapus') {
-    // --- DELETE LOGIC ---
+
     $id_buku = mysqli_real_escape_string($conn, $_GET['id']);
+    $get = mysqli_query($conn, "SELECT file_buku, file_cover FROM tb_buku WHERE id_buku='$id_buku'");
+    $data = mysqli_fetch_assoc($get);
+
+    unlink($folder_buku . $data['file_buku']);
+    unlink($folder_cover . $data['file_cover']);
 
     $query = "DELETE FROM tb_buku WHERE id_buku='$id_buku'";
-
     if (mysqli_query($conn, $query)) {
         header("Location: kelola_buku.php?pesan=sukses_hapus");
     } else {
-        header("Location: kelola_buku.php?pesan=gagal_hapus&error=" . urlencode(mysqli_error($conn)));
+        header("Location: kelola_buku.php?pesan=gagal_hapus");
     }
+
     exit;
 
 } else {
-    // Aksi tidak valid
     header("Location: kelola_buku.php?pesan=aksi_tidak_valid");
     exit;
 }
 ?>
-=======
-if (isset($_POST['simpan'])) {
-    $judul = $_POST['judul'];
-    $penulis = $_POST['penulis'];
-    $kategori = $_POST['kategori'];
-    $cover = $_FILES['cover']['name'];
-
-    echo 
-    'Judul Buku : ' . $judul .
-    '<br> Penulis : ' . $penulis .
-    '<br> Kategori : ' . $kategori .
-    '<br> Nama File : ' . $cover;
-}
-?>
->>>>>>> 1e78c38c13b2315e2dd966844edb4c7463f0dff4

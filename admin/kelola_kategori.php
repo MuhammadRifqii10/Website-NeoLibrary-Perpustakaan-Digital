@@ -21,6 +21,7 @@ $title = "Kelola Kategori Buku";
     <meta charset="utf-8" />
     <title><?= $title ?> | Admin Panel</title>
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
        <aside class="sidebar">
@@ -29,12 +30,13 @@ $title = "Kelola Kategori Buku";
         </div>
 
         <ul class="menu">
-            <li><a href="admin.php" class="menu-item"><span class="icon">🏠</span><span class="text">Dashboard</span></a></li>
-            <li><a href="kelola_buku.php" class="menu-item"><span class="icon">📚</span><span class="text">Kelola Buku</span></a></li>
-            <li><a href="kelola_user.php" class="menu-item active"><span class="icon">👤</span><span class="text">Kelola User</span></a></li>
-            <li><a href="kelola_kategori.php" class="menu-item"><span class="icon">🏷️</span><span class="text">Kategori Buku</span></a></li>
-            <li><a href="#" class="menu-item"><span class="icon">📊</span><span class="text">Laporan Aktivitas</span></a></li>
-            <li><a href="logout.php" class="menu-item"><span class="icon">🚪</span><span class="text">Logout</span></a></li>
+            <li><a href="admin.php" class="menu-item"><i class="fas fa-home icon"></i><span class="text">Dashboard</span></a></li>
+            <li><a href="kelola_buku.php" class="menu-item"><i class="fas fa-book icon"></i><span class="text">Kelola Buku</span></a></li>
+            <li><a href="kelola_user.php" class="menu-item"><i class="fas fa-user icon"></i><span class="text">Kelola User</span></a></li>
+            <li><a href="kelola_kategori.php" class="menu-item active"><i class="fas fa-tags icon"></i><span class="text">Kelola Kategori</span></a></li>
+            <li><a href="kelola_favorit.php" class="menu-item"><i class="fas fa-heart icon"></i><span class="text">Kelola Favorit</span></a></li>
+            <li><a href="#" class="menu-item"><i class="fas fa-chart-bar icon"></i><span class="text">Laporan Aktivitas</span></a></li>
+            <li><a href="logout.php" class="menu-item"><i class="fas fa-sign-out-alt icon"></i><span class="text">Logout</span></a></li>
         </ul>
     </aside>
     <main class="main-content">
